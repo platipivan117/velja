@@ -385,7 +385,7 @@ $('#postdugme').click((e)=>{
         }  
     }*/
     
-
+//komentar
   if(klinutaUcionica==1){
       MojaFunkcija(u1.length,u1,obj);
       if(validacija==true){
