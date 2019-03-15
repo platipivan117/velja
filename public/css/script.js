@@ -1,7 +1,7 @@
 
 var date;
 $('.timepicker').wickedpicker();
-var klinutaUcionica=0;
+var kliknutaUcionica=0;
   
   // POPUNJAVA ZA DANASNJI TJ TRENUTNI DATUM ONLOAD
 $( document ).ready((e)=>{
@@ -195,6 +195,12 @@ $('#right').click((e)=>{
 
 
     });
+
+
+
+
+
+
 $('#left').click((e)=>{
     e.preventDefault();
     $('#left').attr('disabled',true);
@@ -299,27 +305,91 @@ $('#left').click((e)=>{
   
 });
 
+Date.daysBetween = function( date1, date2 ) {
+  var date1_ms = date1.getTime();
+  var date2_ms = date2.getTime();
+  var difference_ms = date2_ms - date1_ms;
+  return difference_ms;
+}
+  function MojaFunkcija(n,niz,datum1) {
+      var provera=true;
+      var brojac=0;
+      for(var i=0;i<n;i++)
+      { 
+        alert(new Date(niz[i].start));
+        alert(new Date(niz[i].finish));
+        
+        if((new Date(niz[i].start)).getTime()<(new Date(datum1.start)).getTime() && (new Date(datum1.start)).getTime()<(new Date(niz[i].finish)).getTime())
+        
+        { 
+          //alert(new Date(niz[i].start));
+          //alert(new Date(datum1.start)+2);
+          provera=false;
+          validacija= false;
+          alert(new Date(niz[i].start));
+          alert(new Date(datum.start));
+          break;
+        }              
+        //alert(new Date(datum1.start));
+      }
+      if(provera!=false)
+      {
+        alert("FASF");   
+        for(var i=0;i<n;i++)
+        {
+          if(Date.daysBetween(new Date(niz[i].start),new Date(datum1.start))>0)
+          { 
+            brojac=i;
+            break;
+          }
+        }
+      } 
+      if((new Date(datum1.finish)).getTime()<=(new Date(niz[brojac].finish)).getTime()){
+        validacija=true;
+      }
+      else{
+        validacija=false;
+      } 
+  }
 
 $('#postdugme').click((e)=>{
   e.preventDefault();
+
+
+
+
   //kreiramo datum pocetnog selektovcanog datuma
-  var timepickers = $('#timepicker-one').wickedpicker('time');
-    var nizdatum = timepickers.split(" ");
-    var datumKarticePocetak= date;
+  
+    var nizdatum = $('#vreme1').val().split(":");
+  
+
+
+
+
+   // var datumKarticePocetak= new Date(date.getYear(),date.getDate(),date.getMonth(),nizdatum[0],nizdatum[1]);
+   var datumKarticePocetak= date;
+    
     datumKarticePocetak.setHours(nizdatum[0]);
-    datumKarticePocetak.setMinutes(nizdatum[2]);
+    datumKarticePocetak.setMinutes(nizdatum[1]);
+   // alert(datumKarticePocetak);
   // krerianje krajnog datuma
-     timepickers = $('#timepicker-two').wickedpicker('time');
-     nizdatum = timepickers.split(" ");
+     
+     nizdatum = $('#vreme2').val().split(":");
+     
+  // var datumKarticeKraj= new Date(date.getYear(),date.getMonth(),date.getDate(),nizdatum[0],nizdatum[1]);
    var datumKarticeKraj= date;
     datumKarticeKraj.setHours(nizdatum[0]);
-    datumKarticeKraj.setMinutes(nizdatum[2]);
+   datumKarticeKraj.setMinutes(nizdatum[1]);
+   //alert(datumKarticeKraj);
 
     var obj= {
       start:datumKarticePocetak,
       finish:datumKarticeKraj
     };
-
+  
+   // alert(new Date(obj.start));
+    //alert(new Date(obj.finish));
+    alert(JSON.stringify(obj));
 
 
   var u1fil=[];
@@ -340,7 +410,7 @@ $('#postdugme').click((e)=>{
       u3=data.u3;
       u4=data.u4;
  
-      alert(JSON.stringify(u1));
+      
       callback();
  
 
@@ -353,40 +423,10 @@ $('#postdugme').click((e)=>{
   
   var callback=() =>{
     
- /* Date.daysBetween = function( date1, date2 ) {
-    var date1_ms = date1.getTime();
-    var date2_ms = date2.getTime();
-    var difference_ms = date2_ms - date1_ms;
-    return difference_ms;
-  }
-    function MojaFunkcija(n,niz,datum) {
-        var provera=true;
-        var brojac=0;
-        for(var i=0;i<n;i++){
-          if(niz[i].start<datum.start && datum.start<niz[i].finish)
-          { 
-            provera=false;
-            validacija= false;
-          }  
-          alert("FASF");     
-        }
-        if(provera!=false){
-          int: min=Date.daysBetween(niz[0].start,datum.start);
-          for(var i=0;i<n;i++){
-            if(Date.daysBetween(niz[i].start,datum.start)<min && Date.daysBetween(niz[i].start,datum.start)>0)
-            { 
-              min=Date.daysBetween(niz[i].start,datum.start);
-              brojac=i;
-            }
-          }
-          if(datum.finish<=niz[i].finish){
-            validacija=true;
-          }
-        }  
-    }*/
+  //kraj funkcije
     
 //komentar
-  if(klinutaUcionica==1){
+  if(kliknutaUcionica==1){
       MojaFunkcija(u1.length,u1,obj);
       if(validacija==true){
         //izvrsava kod za unos u mongoDB
@@ -400,14 +440,14 @@ $('#postdugme').click((e)=>{
   }
 
 
-    alert(JSON.stringify(u1));
-    var data= {
+    //alert(JSON.stringify(u1));
+   /* var data= {
       komentar: $('#komentar').val()
       
     };
     $.post('dodaj',data,(data,result)=>{
       console.log("Ajax post req odradjen");
-    });
+    });*/
 
       
 
@@ -439,5 +479,8 @@ $('#postdugme').click((e)=>{
  
   });
 
+  $('#btn1').click(()=>{
+    kliknutaUcionica=1;
+  });
 
 
