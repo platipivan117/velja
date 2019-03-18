@@ -344,46 +344,29 @@ alert(dateUnetFinish);
 validacija=false;
        
 for(var i=1;i<nizDatuma.length;i++){
-  /*alert(JSON.stringify(nizDatuma[i-1]));
-  alert("1");
-  alert(dateUnetStart+" >"+nizDatuma[i-1].start);
-    alert(dateUnetStart+" <"+nizDatuma[i-1].finish);
-    alert("2");
-    alert(dateUnetFinish+" >"+nizDatuma[i-1].start);
-    alert(dateUnetFinish+" <"+nizDatuma[i-1].finish);
-    alert("3");
-    alert(dateUnetStart+" <"+nizDatuma[i-1].start);
-    alert(dateUnetStart+" >"+nizDatuma[i-1].finish);*/
+  
 
   if((nizDatuma[i-1].start.getTime()<dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetStart.getTime()))  {
 
-   /* alert("nalazi se unutar");
-    alert(dateUnetStart+" >"+nizDatuma[i-1].start);
-    alert(dateUnetStart+" <"+nizDatuma[i-1].finish);*/
+
     validacija=false;
     provera=false;
     break;
 }
 else if(nizDatuma[i-1].start.getTime()<dateUnetFinish.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetFinish.getTime()){
-    /*alert("nalazi se unutar prvi elseif");
-    alert(dateUnetFinish+" >"+nizDatuma[i-1].start);
-    alert(dateUnetFinish+" <"+nizDatuma[i-1].finish);*/
+   
     validacija=false;
     provera=false;
     break;
 }
 else if(nizDatuma[i-1].start.getTime()>dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()<dateUnetFinish.getTime()){
-   /* alert("nalazi se unutar drugi elseif");
-    alert(dateUnetStart+" <"+nizDatuma[i-1].start);
-    alert(dateUnetStart+" >"+nizDatuma[i-1].finish);*/
+  
     validacija=false;
     provera=false;
     break;
 }
 else if(dateUnetStart.getTime()< nizDatuma[i].start.getTime() && dateUnetFinish.getTime()<nizDatuma[i].start.getTime()){
- /* alert(dateUnetStart+" <"+nizDatuma[i].start);
-  alert(dateUnetFinish+" <"+nizDatuma[i].start);
-    alert("ne nalazi se unutra treci elseif");*/
+ 
      validacija=true;
      break;
  }
@@ -393,12 +376,35 @@ else if(dateUnetStart.getTime()< nizDatuma[i].start.getTime() && dateUnetFinish.
 if(validacija==true){
   alert("prva vaalicaija true");
     alert("moze");
+    var data ={
+      start: dateUnetStart,
+      finish:dateUnetFinish,
+      ucionica: kliknutaUcionica,
+      prof:$("#profesor").val(),
+      komentar: $("#komentar").val()
+    };
+    console.log(JSON.stringify(data));
+    $.post( "/dodaj",data, function( data ) {
+      console.log(JSON.stringify(data));
+      console.log("post izvrsen");
+    });
 }
 else{
 
     if(dateUnetStart.getTime()>nizDatuma[nizDatuma.length-1].finish.getTime()  ){
         alert("moze,duzina");
-        alert(JSON.stringify(nizDatuma[nizDatuma.length-1]));
+        var data ={
+          start: dateUnetStart,
+          finish:dateUnetFinish,
+          ucionica: kliknutaUcionica,
+          prof:$("#profesor").val(),
+          komentar: $("#komentar").val()
+        };
+        console.log(JSON.stringify(data));
+        $.post( "/dodaj",data ,function( data) {
+          alert(JSON.stringify(data));
+          console.log("post izvrsen");
+        });
 
     }
     else{

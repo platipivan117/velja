@@ -95,9 +95,37 @@ exports.date= (req,res)=>{
 
 
 exports.dodaj = (req,res)=>{
-    console.log(req.body.komentar);
+    
+    var obj={
+        start: req.body.start,
+        finish:req.body.finish,
+        prof:req.body.prof,
+        komentar:req.body.komentar,
+        ucionica:req.body.ucionica
+    };
+    console.log(JSON.stringify(obj));
+    mongodb.connect(url,(err,client)=>{
+        assert.equal(null,err);
+        const db= client.db(dbname);
+        
+        var cursor=db.collection('Date').insertOne(obj,(err,res)=>{
+            assert.equal(null,err);
+            console.log(JSON.stringify(obj)+" UBACEN");
+            client.close();
+            
 
-    res.redirect('/zak');
+        });
+        res.redirect('/zak');
+     
+
+});
+    
+
+
+
+    
+
+    
 
 };
 exports.err=(req,res)=>{
