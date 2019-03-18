@@ -1,6 +1,6 @@
-
+var s1;
+var s2;
 var date;
-$('.timepicker').wickedpicker();
 var kliknutaUcionica=0;
   
   // POPUNJAVA ZA DANASNJI TJ TRENUTNI DATUM ONLOAD
@@ -93,9 +93,6 @@ $( document ).ready((e)=>{
         //alert(JSON.stringify(data));
         
         });   
-      
-  });
-
 $('#right').click((e)=>{
     $('#right').attr('disabled',true);
     $('#left').attr('disabled',true);
@@ -195,11 +192,6 @@ $('#right').click((e)=>{
 
 
     });
-
-
-
-
-
 
 $('#left').click((e)=>{
     e.preventDefault();
@@ -304,92 +296,74 @@ $('#left').click((e)=>{
 
   
 });
+function Provera(nizDatuma) {
+    s1=$("#11").val();
+    s2=$("#22").val();
+alert(date);
 
-Date.daysBetween = function( date1, date2 ) {
-  var date1_ms = date1.getTime();
-  var date2_ms = date2.getTime();
-  var difference_ms = date2_ms - date1_ms;
-  return difference_ms;
-}
-  function MojaFunkcija(n,niz,datum1) {
-      var provera=true;
-      var brojac=0;
-      for(var i=0;i<n;i++)
-      { 
-        alert(new Date(niz[i].start));
-        alert(new Date(niz[i].finish));
-        
-        if((new Date(niz[i].start)).getTime()<(new Date(datum1.start)).getTime() && (new Date(datum1.start)).getTime()<(new Date(niz[i].finish)).getTime())
-        
-        { 
-          //alert(new Date(niz[i].start));
-          //alert(new Date(datum1.start)+2);
-          provera=false;
-          validacija= false;
-          alert(new Date(niz[i].start));
-          alert(new Date(datum.start));
-          break;
-        }              
-        //alert(new Date(datum1.start));
-      }
-      if(provera!=false)
-      {
-        alert("FASF");   
-        for(var i=0;i<n;i++)
-        {
-          if(Date.daysBetween(new Date(niz[i].start),new Date(datum1.start))>0)
-          { 
-            brojac=i;
-            break;
-          }
-        }
-      } 
-      if((new Date(datum1.finish)).getTime()<=(new Date(niz[brojac].finish)).getTime()){
-        validacija=true;
-      }
-      else{
+ 
+  alert(s1);
+
+  
+ 
+  var n=s1.split(":");
+
+  alert(n);
+  
+  var dateUnetStart=  new Date(date.getFullYear(),date.getMonth(),date.getDate(),n[0],n[1]);
+
+  n=s2.split(":");
+
+  var dateUnetFinish= new Date(date.getFullYear(),date.getMonth(),date.getDate(),n[0],n[1]);
+ 
+   
+ 
+ 
+
+alert(dateUnetStart);
+alert(dateUnetFinish);
+ 
+
+validacija=false;
+       
+for(var i=1;i<nizDatuma.length;i++){
+
+    if((nizDatuma[i-1].start.getTime()<dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetStart.getTime()) || (nizDatuma[i-1].start.getTime()<dateUnetFinish.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetFinish.getTime()) ){
+        alert("nalazi se unutar");
         validacija=false;
-      } 
-  }
+        provera=false;
+        break;
+    }
+    else if(dateUnetStart.getTime()< nizDatuma[i].start.getTime() && dateUnetFinish.getTime()<nizDatuma[i].start.getTime()){
+        alert("ne nalazi se unutra");
+         validacija=true;
+         break;
+     }
+     
+}
+
+if(validacija==true){
+    alert("moze");
+}
+else{
+
+    if(dateUnetStart.getTime()>nizDatuma[nizDatuma.length-1].finish.getTime()  ){
+        alert("moze");
+
+    }
+    else{
+        alert("jok");
+    }
+}
+
+
+
+}
+
+
 
 $('#postdugme').click((e)=>{
-  e.preventDefault();
-
-
-
-
-  //kreiramo datum pocetnog selektovcanog datuma
-  
-    var nizdatum = $('#vreme1').val().split(":");
-  
-
-
-
-
-   // var datumKarticePocetak= new Date(date.getYear(),date.getDate(),date.getMonth(),nizdatum[0],nizdatum[1]);
-   var datumKarticePocetak= date;
-    
-    datumKarticePocetak.setHours(nizdatum[0]);
-    datumKarticePocetak.setMinutes(nizdatum[1]);
-   // alert(datumKarticePocetak);
-  // krerianje krajnog datuma
-     
-     nizdatum = $('#vreme2').val().split(":");
-     
-  // var datumKarticeKraj= new Date(date.getYear(),date.getMonth(),date.getDate(),nizdatum[0],nizdatum[1]);
-   var datumKarticeKraj= date;
-    datumKarticeKraj.setHours(nizdatum[0]);
-   datumKarticeKraj.setMinutes(nizdatum[1]);
-   //alert(datumKarticeKraj);
-
-    var obj= {
-      start:datumKarticePocetak,
-      finish:datumKarticeKraj
-    };
-  
-   // alert(new Date(obj.start));
-    //alert(new Date(obj.finish));
-    alert(JSON.stringify(obj));
+ 
 
 
   var u1fil=[];
@@ -402,7 +376,7 @@ $('#postdugme').click((e)=>{
   var u4=[];
   var klinutaUcionica=1;
 
-  var validacija;
+
   var getFunc= (callback)=>{
     $.get('/zak/data',(data,status)=>{
       u1=data.u1;
@@ -412,56 +386,91 @@ $('#postdugme').click((e)=>{
  
       
       callback();
- 
-
-
+      
 
 });
 
 
   };
   
-  var callback=() =>{
+  function callback (){
     
-  //kraj funkcije
     
-//komentar
-  if(kliknutaUcionica==1){
-      MojaFunkcija(u1.length,u1,obj);
-      if(validacija==true){
-        //izvrsava kod za unos u mongoDB
-        alert("BARTKUSONI");
-        validacija=false;
+    var nizDatuma1=[];
+    u1.forEach((element)=>{
+      var obj={
+        start: new Date(element.start),
+        finish: new Date(element.finish)
       }
-      else{
-        //javlja gresku pri unosu
-        alert("nope");
-      }
+     
+      nizDatuma1.push(obj);
+    });
+
+   nizDatuma1.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
+ 
+
+
+
+
+
+   
+   var nizDatuma2=[];
+   u2.forEach((element)=>{
+     var obj={
+       start: new Date(element.start),
+       finish: new Date(element.finish)
+     }
+     nizDatuma2.push(obj);
+   });
+
+  nizDatuma2.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
+
+
+
+
+
+  var nizDatuma3=[];
+  u3.forEach((element)=>{
+    var obj={
+      start: new Date(element.start),
+      finish: new Date(element.finish)
+    }
+    nizDatuma3.push(obj);
+  });
+
+ nizDatuma3.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
+
+
+
+
+
+
+ 
+ var nizDatuma4=[];
+ u4.forEach((element)=>{
+   var obj={
+     start: new Date(element.start),
+     finish: new Date(element.finish)
+   }
+   nizDatuma4.push(obj);
+ });
+
+nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
+
+
+
+
+if(kliknutaUcionica==1){
+  Provera(nizDatuma1);
+
+
+}
+
+
+
+
   }
-
-
-    //alert(JSON.stringify(u1));
-   /* var data= {
-      komentar: $('#komentar').val()
-      
-    };
-    $.post('dodaj',data,(data,result)=>{
-      console.log("Ajax post req odradjen");
-    });*/
-
-      
-
-
-
-
-
-
-
-
-
-
-  }
-
+ 
 
   getFunc(callback);
  
@@ -483,4 +492,7 @@ $('#postdugme').click((e)=>{
     kliknutaUcionica=1;
   });
 
+
+
+});
 
