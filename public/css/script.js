@@ -2,6 +2,10 @@ var s1;
 var s2;
 var date;
 var kliknutaUcionica=0;
+var nizDatuma1=[];
+var nizDatuma2=[];
+var nizDatuma3=[];
+var nizDatuma4=[];
   
   // POPUNJAVA ZA DANASNJI TJ TRENUTNI DATUM ONLOAD
 $( document ).ready((e)=>{
@@ -296,11 +300,11 @@ $('#left').click((e)=>{
 
   
 });
-function Provera(nizDatuma) {
+function Provera() {
     s1=$("#11").val();
     s2=$("#22").val();
 alert(date);
-
+  var nizDatuma=[];
  
   alert(s1);
 
@@ -317,49 +321,91 @@ alert(date);
   var dateUnetFinish= new Date(date.getFullYear(),date.getMonth(),date.getDate(),n[0],n[1]);
  
    
- 
+ if(kliknutaUcionica==1){
+   nizDatuma=nizDatuma1;
+ }
+ else if(kliknutaUcionica==2){
+   nizDatuma=nizDatuma2;
+ }
+ else if(kliknutaUcionica==3){
+  nizDatuma=nizDatuma3;
+}
+else if(kliknutaUcionica==4){
+  nizDatuma=nizDatuma4;
+}
+
  
 
 alert(dateUnetStart);
 alert(dateUnetFinish);
  
 
+
 validacija=false;
        
 for(var i=1;i<nizDatuma.length;i++){
+  /*alert(JSON.stringify(nizDatuma[i-1]));
+  alert("1");
+  alert(dateUnetStart+" >"+nizDatuma[i-1].start);
+    alert(dateUnetStart+" <"+nizDatuma[i-1].finish);
+    alert("2");
+    alert(dateUnetFinish+" >"+nizDatuma[i-1].start);
+    alert(dateUnetFinish+" <"+nizDatuma[i-1].finish);
+    alert("3");
+    alert(dateUnetStart+" <"+nizDatuma[i-1].start);
+    alert(dateUnetStart+" >"+nizDatuma[i-1].finish);*/
 
-    if((nizDatuma[i-1].start.getTime()<dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetStart.getTime()) || (nizDatuma[i-1].start.getTime()<dateUnetFinish.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetFinish.getTime()) ){
-        alert("nalazi se unutar");
-        validacija=false;
-        provera=false;
-        break;
-    }
-    else if(dateUnetStart.getTime()< nizDatuma[i].start.getTime() && dateUnetFinish.getTime()<nizDatuma[i].start.getTime()){
-        alert("ne nalazi se unutra");
-         validacija=true;
-         break;
-     }
+  if((nizDatuma[i-1].start.getTime()<dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetStart.getTime()))  {
+
+   /* alert("nalazi se unutar");
+    alert(dateUnetStart+" >"+nizDatuma[i-1].start);
+    alert(dateUnetStart+" <"+nizDatuma[i-1].finish);*/
+    validacija=false;
+    provera=false;
+    break;
+}
+else if(nizDatuma[i-1].start.getTime()<dateUnetFinish.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetFinish.getTime()){
+    /*alert("nalazi se unutar prvi elseif");
+    alert(dateUnetFinish+" >"+nizDatuma[i-1].start);
+    alert(dateUnetFinish+" <"+nizDatuma[i-1].finish);*/
+    validacija=false;
+    provera=false;
+    break;
+}
+else if(nizDatuma[i-1].start.getTime()>dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()<dateUnetFinish.getTime()){
+   /* alert("nalazi se unutar drugi elseif");
+    alert(dateUnetStart+" <"+nizDatuma[i-1].start);
+    alert(dateUnetStart+" >"+nizDatuma[i-1].finish);*/
+    validacija=false;
+    provera=false;
+    break;
+}
+else if(dateUnetStart.getTime()< nizDatuma[i].start.getTime() && dateUnetFinish.getTime()<nizDatuma[i].start.getTime()){
+ /* alert(dateUnetStart+" <"+nizDatuma[i].start);
+  alert(dateUnetFinish+" <"+nizDatuma[i].start);
+    alert("ne nalazi se unutra treci elseif");*/
+     validacija=true;
+     break;
+ }
      
 }
 
 if(validacija==true){
+  alert("prva vaalicaija true");
     alert("moze");
 }
 else{
 
     if(dateUnetStart.getTime()>nizDatuma[nizDatuma.length-1].finish.getTime()  ){
-        alert("moze");
+        alert("moze,duzina");
+        alert(JSON.stringify(nizDatuma[nizDatuma.length-1]));
 
     }
     else{
         alert("jok");
     }
 }
-
-
-
 }
-
 
 
 $('#postdugme').click((e)=>{
@@ -396,17 +442,21 @@ $('#postdugme').click((e)=>{
   function callback (){
     
     
-    var nizDatuma1=[];
+    
     u1.forEach((element)=>{
       var obj={
         start: new Date(element.start),
         finish: new Date(element.finish)
       }
+      obj.start.setHours(obj.start.getHours()-1);
+      obj.finish.setHours(obj.finish.getHours()-1);
      
+
       nizDatuma1.push(obj);
     });
 
    nizDatuma1.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
+   
  
 
 
@@ -414,7 +464,7 @@ $('#postdugme').click((e)=>{
 
 
    
-   var nizDatuma2=[];
+   
    u2.forEach((element)=>{
      var obj={
        start: new Date(element.start),
@@ -429,7 +479,7 @@ $('#postdugme').click((e)=>{
 
 
 
-  var nizDatuma3=[];
+  
   u3.forEach((element)=>{
     var obj={
       start: new Date(element.start),
@@ -446,7 +496,7 @@ $('#postdugme').click((e)=>{
 
 
  
- var nizDatuma4=[];
+ 
  u4.forEach((element)=>{
    var obj={
      start: new Date(element.start),
