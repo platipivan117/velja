@@ -6,13 +6,17 @@ var nizDatuma1=[];
 var nizDatuma2=[];
 var nizDatuma3=[];
 var nizDatuma4=[];
+var stringDatuma="";
+
   
   // POPUNJAVA ZA DANASNJI TJ TRENUTNI DATUM ONLOAD
 $( document ).ready((e)=>{
+    
    // e.preventDefault();
         date= new Date();
         //date.setDate(today.getDate());
-        
+        stringDatuma= date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()+".";
+  $(".datum").html("<h1>"+stringDatuma+"</h1>");
        
         var dan= date.getDate();
         var mesec=date.getMonth()+1;
@@ -54,9 +58,10 @@ $( document ).ready((e)=>{
           
           data.u1.forEach(element => {
               let d= new Date(element.start);
+              let e = new Date(element.finish);
 
               if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<p class=\"card-text\">" +element.prof +"</p>"
+                var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
             $('#1').append(string);
           }
                  
@@ -66,16 +71,20 @@ $( document ).ready((e)=>{
           data.u2.forEach(element => {
             
             let d= new Date(element.start);
+            let e = new Date(element.finish);
+
             if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<p class=\"card-text\">" +element.prof +"</p>"
+              var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
             $('#2').append(string);
           }
         });
         data.u3.forEach(element => {
           
           let d= new Date(element.start);
+          let e = new Date(element.finish);
+
           if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<p class=\"card-text\">" +element.prof +"</p>"
+            var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
             $('#3').append(string);
           }
         });
@@ -83,8 +92,10 @@ $( document ).ready((e)=>{
         data.u4.forEach(element => {
           
           let d= new Date(element.start);
-          if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<p class=\"card-text\">" +element.prof +"</p>"
+              let e = new Date(element.finish);
+
+              if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+                var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
             $('#4').append(string);
           }
         });
@@ -94,7 +105,7 @@ $( document ).ready((e)=>{
 
           
 
-        //alert(JSON.stringify(data));
+        
         
         });   
 $('#right').click((e)=>{
@@ -102,13 +113,16 @@ $('#right').click((e)=>{
     $('#left').attr('disabled',true);
     $('#left').css('display','inline-block');
      e.preventDefault();
+     
  
      $( ".card-text" ).remove();
         var newdate= new Date();
         
         newdate.setDate(date.getDate()+1);
         date=newdate;
-
+        
+        stringDatuma= date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()+".";
+        $(".datum").html("<h1>"+stringDatuma+"</h1>");
       
         
         var dan= newdate.getDate();
@@ -145,10 +159,11 @@ $('#right').click((e)=>{
 
           
           data.u1.forEach(element => {
-              let d= new Date(element.start);
-              
-              if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<p class=\"card-text\">" +element.prof +"</p>"
+            let d= new Date(element.start);
+            let e = new Date(element.finish);
+
+            if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+              var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
             $('#1').append(string);
           }
                  
@@ -158,16 +173,20 @@ $('#right').click((e)=>{
           data.u2.forEach(element => {
             
             let d= new Date(element.start);
+            let e = new Date(element.finish);
+
             if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<p class=\"card-text\">" +element.prof +"</p>"
+              var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
             $('#2').append(string);
           }
         });
         data.u3.forEach(element => {
         
           let d= new Date(element.start);
+          let e = new Date(element.finish);
+
           if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<p class=\"card-text\">" +element.prof +"</p>"
+            var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
             $('#3').append(string);
           }
         });
@@ -175,8 +194,10 @@ $('#right').click((e)=>{
         data.u4.forEach(element => {
          
           let d= new Date(element.start);
-          if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<p class=\"card-text\">" +element.prof +"</p>"
+              let e = new Date(element.finish);
+
+              if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+                var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
             $('#4').append(string);
           }
         });
@@ -204,6 +225,7 @@ $('#left').click((e)=>{
     var today= new Date();
     today.setDate(today.getDate()+1);
     
+    
     if(today.getDate()==date.getDate()&&today.getMonth()==date.getMonth() ){
         $('#left').css('display','none');
     }
@@ -213,7 +235,8 @@ $('#left').click((e)=>{
        
        newdate.setDate(date.getDate()-1);
        date=newdate;
-
+       stringDatuma= date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()+".";
+       $(".datum").html("<h1>"+stringDatuma+"</h1>");
      
        
        var dan= newdate.getDate();
@@ -250,10 +273,11 @@ $('#left').click((e)=>{
 
          
          data.u1.forEach(element => {
-             let d= new Date(element.start);
-             
-             if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-           var string="<p class=\"card-text\">" +element.prof +"</p>"
+          let d= new Date(element.start);
+          let e = new Date(element.finish);
+
+          if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+            var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
            $('#1').append(string);
          }
                 
@@ -261,27 +285,32 @@ $('#left').click((e)=>{
 
          
          data.u2.forEach(element => {
-           
-           let d= new Date(element.start);
-           if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-           var string="<p class=\"card-text\">" +element.prof +"</p>"
+          let d= new Date(element.start);
+          let e = new Date(element.finish);
+
+          if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+            var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
            $('#2').append(string);
          }
        });
        data.u3.forEach(element => {
        
-         let d= new Date(element.start);
-         if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-           var string="<p class=\"card-text\">" +element.prof +"</p>"
+        let d= new Date(element.start);
+        let e = new Date(element.finish);
+
+        if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+          var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
            $('#3').append(string);
          }
        });
 
        data.u4.forEach(element => {
         
-         let d= new Date(element.start);
-         if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-           var string="<p class=\"card-text\">" +element.prof +"</p>"
+        let d= new Date(element.start);
+        let e = new Date(element.finish);
+
+        if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+          var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
            $('#4').append(string);
          }
        });
@@ -303,16 +332,16 @@ $('#left').click((e)=>{
 function Provera() {
     s1=$("#11").val();
     s2=$("#22").val();
-alert(date);
+
   var nizDatuma=[];
  
-  alert(s1);
+ 
 
   
  
   var n=s1.split(":");
 
-  alert(n);
+ 
   
   var dateUnetStart=  new Date(date.getFullYear(),date.getMonth(),date.getDate(),n[0],n[1]);
 
@@ -336,13 +365,14 @@ else if(kliknutaUcionica==4){
 
  
 
-alert(dateUnetStart);
-alert(dateUnetFinish);
  
 
 
 validacija=false;
-       
+       if(nizDatuma.length==0){
+         validacija= true
+       }
+       else{
 for(var i=1;i<nizDatuma.length;i++){
   
 
@@ -372,10 +402,10 @@ else if(dateUnetStart.getTime()< nizDatuma[i].start.getTime() && dateUnetFinish.
  }
      
 }
+       }
 
 if(validacija==true){
-  alert("prva vaalicaija true");
-    alert("moze");
+  
     var data ={
       start: dateUnetStart,
       finish:dateUnetFinish,
@@ -385,14 +415,15 @@ if(validacija==true){
     };
     console.log(JSON.stringify(data));
     $.post( "/dodaj",data, function( data ) {
-      console.log(JSON.stringify(data));
+      alert("Zakazan cas");
       console.log("post izvrsen");
+      location.reload();
     });
 }
 else{
 
     if(dateUnetStart.getTime()>nizDatuma[nizDatuma.length-1].finish.getTime()  ){
-        alert("moze,duzina");
+        
         var data ={
           start: dateUnetStart,
           finish:dateUnetFinish,
@@ -402,13 +433,16 @@ else{
         };
         console.log(JSON.stringify(data));
         $.post( "/dodaj",data ,function( data) {
-          alert(JSON.stringify(data));
+          
           console.log("post izvrsen");
+          alert("Zakazan cas");
+          location.reload();
         });
 
+
     }
-    else{
-        alert("jok");
+    else{ 
+        alert("Termin nije dostupan");
     }
 }
 }
@@ -516,11 +550,8 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
 
 
 
-if(kliknutaUcionica==1){
-  Provera(nizDatuma1);
 
-
-}
+  Provera();
 
 
 
@@ -547,6 +578,16 @@ if(kliknutaUcionica==1){
   $('#btn1').click(()=>{
     kliknutaUcionica=1;
   });
+  $('#btn2').click(()=>{
+    kliknutaUcionica=2;
+  });
+  $('#btn3').click(()=>{
+    kliknutaUcionica=3;
+  });
+  $('#btn4').click(()=>{
+    kliknutaUcionica=4;
+  });
+
 
 
 

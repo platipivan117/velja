@@ -1,13 +1,23 @@
 <html>
-    <head>
+    <head>  <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
                 <link rel="stylesheet" href="css/style.css">
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <link rel="stylesheet" href="css/datecss.css">
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+            <script src="css/datejs.js"></script>
+                
         </head>
 <body>
-
-
-    <div class="container"><h1>BRAKUSONIIIII</h1></div>
+  <input type='text' class="datepicker-here"  />
+  <div class="container">
+    
+    <button class="btn btn-primary" disabled= "true"id="left"><i class="fas fa-arrow-left"></i></button>
+    <button class="btn btn-primary" id="lupa"><i class="fas fa-search"></i></button>
+    <button class="btn btn-primary" id="right" disabled= "true"><i class="fas fa-arrow-right"></i></button>
+    
+</div>
+    <div class=" datum" ></div>
     
             <div class="container">
               <div class="row">
@@ -20,7 +30,7 @@
                               <p class="card-text"></p>
                              
                           
-                          <a href="#" class="btn btn-primary" id="btn1">Go somewhere</a>
+                          <a href="#" class="btn btn-primary contact" id="btn1">Zakazi za ucionicu 1</a>
                         </div>
                       </div>
                 </div>
@@ -33,7 +43,7 @@
                               <p class="card-text"></p>
                              
                           
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <a href="#" class="btn btn-primary contact" id="btn2">Zakazi za ucionicu 2</a>
                         </div>
                       </div>
                 </div>
@@ -46,7 +56,7 @@
                               <p class="card-text"></p>
                              
                           
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <a href="#" class="btn btn-primary contact" id="btn3">Zakazi za ucionicu 3</a>
                         </div>
                       </div>
                 </div>
@@ -59,28 +69,29 @@
                               <p class="card-text"></p>
                              
                           
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          <a href="#" class="btn btn-primary contact" id="btn4">Zakazi za ucionicu 4</a>
                         </div>
                       </div>
                 </div>
               </div>
             </div>
 
-                <div class="container">
-                    <button class="btn btn-primary" disabled= "true"id="left"><-</button>
-                <button class="btn btn-primary" id="right" disabled= "true">-></button>
-              </div>
-              <div class="forma">
-              <form >
-                <div class="form-group">
-                  <label >Komentar</label>
-                  <input  id="komentar"class="form-control"   placeholder="Komentar" name="komentar">
-                  <small id="emailHelp" class="form-text text-muted">Dodajte komentar</small>
-                </div>
-                <div class="form-group">
-                <label >profesor</label>
-                <input  id="profesor"class="form-control"   placeholder="profesor" name="profesor">
-                <small id="emailHelp" class="form-text text-muted">Profesor</small>
+              
+           
+              <div id="contactForm">
+
+                <h1>Zakazivanje</h1>
+                <small></small>
+                
+                <form action="#">
+                  
+                  <input placeholder="Profesor" type="text" id="profesor" required />
+                  <input placeholder="Pocetak"  type="text"id="11" required />
+                  <input placeholder="Kraj" type="text"id="22" required />
+                  <textarea placeholder="Komentar" id="komentar"></textarea>
+                  <button id="postdugme" class="btn btn-primary">Zakazi</button>
+                  
+                </form>
               </div>
                 
               
@@ -88,18 +99,20 @@
                
                 
               </form>
-              <input type="text" id="11">
+             <!-- <input type="text" id="11">
               <input type=" text" id="22">
-              <button  class="btn btn-primary" id="postdugme">Submit</button>
+              <button  class="btn btn-primary" id="postdugme">Submit</button>-->
             
             </div>
             
+            
 
+           
 
-
-                  <script type="text/javascript" src="css/wickedpicker.js"></script>
+                  
                  
                   <script src="css/script.js"></script>
+                  <script src="css/forma.js"></script>
 
 
 </body>
