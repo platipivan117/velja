@@ -3,8 +3,8 @@ var mongodb=require('mongodb');
 var bodyparser= require('body-parser');
 var assert= require('assert');
 
-var url='mongodb://localhost:27017';
-var dbname='Velja';
+var url="mongodb+srv://Ivan:japibog123@veljabaza-w0aug.gcp.mongodb.net/test?retryWrites=true";
+var dbname='VeljaBaza';
 
 exports.home= (req,res)=>{
     res.render('home');
@@ -56,7 +56,7 @@ exports.date= (req,res)=>{
         assert.equal(null,err);
         const db= client.db(dbname);
         
-        var cursor=db.collection('Date').find();
+        var cursor=db.collection('baza').find();
         cursor.forEach((doc,err)=>{
             assert.equal(null,err);
             nizPodataka.push(doc);
@@ -108,7 +108,7 @@ exports.dodaj = (req,res)=>{
         assert.equal(null,err);
         const db= client.db(dbname);
         
-        var cursor=db.collection('Date').insertOne(obj,(err,res)=>{
+        var cursor=db.collection('baza').insertOne(obj,(err,res)=>{
             assert.equal(null,err);
             console.log(JSON.stringify(obj)+" UBACEN");
             client.close();

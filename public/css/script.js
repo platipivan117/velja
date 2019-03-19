@@ -21,12 +21,7 @@ $( document ).ready((e)=>{
         var dan= date.getDate();
         var mesec=date.getMonth()+1;
         
-        var date1= new Date();
-        
-
-        
-
-        var requString= '/zak/'+dan+'-'+mesec;
+         
         //get req da uzmemo potrebde podatke za datume
         $.get('/zak/data',(data,status)=>{
          
@@ -587,6 +582,123 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
   $('#btn4').click(()=>{
     kliknutaUcionica=4;
   });
+  $("#lupa").click(()=>{
+    
+    var niz = $(".datepicker-here").val().split(".");
+    if($(".datepicker-here").val()!= ""){
+     var newdate = date;
+     newdate.setDate(niz[0]);
+     newdate.setMonth(niz[1]-1);
+     newdate.setFullYear(niz[2]);
+     
+   
+
+    $('#right').attr('disabled',true);
+    $('#left').attr('disabled',true);
+  
+  
+     
+ 
+     $( ".card-text" ).remove();
+       
+        date=newdate;
+        
+        stringDatuma= date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()+".";
+        $(".datum").html("<h1>"+stringDatuma+"</h1>");
+      
+        
+        var dan= newdate.getDate();
+        var mesec=newdate.getMonth()+1;
+        var requString= '/zak/'+dan+'-'+mesec;
+      
+      $.get('/zak/data',(data,status)=>{
+       
+        
+        var u1fil=[];
+          var u2fil=[];
+          var u3fil=[];
+          var u4fil=[];
+          // pravimo niz objekata date
+          data.u1.forEach((element)=>{
+              
+            
+              u1fil.push(new Date(element.start));
+              
+          });
+          data.u2.forEach((element)=>{
+              
+              u2fil.push(new Date(element.start));
+          });
+          data.u3.forEach((element)=>{
+              
+              u3fil.push(new Date(element.start));
+          });
+          data.u4.forEach((element)=>{
+              
+              u4fil.push(new Date(element.start));
+          });
+                    
+
+          
+          data.u1.forEach(element => {
+            let d= new Date(element.start);
+            let e = new Date(element.finish);
+
+            if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+              var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+            $('#1').append(string);
+          }
+                 
+          });
+
+          
+          data.u2.forEach(element => {
+            
+            let d= new Date(element.start);
+            let e = new Date(element.finish);
+
+            if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+              var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+            $('#2').append(string);
+          }
+        });
+        data.u3.forEach(element => {
+        
+          let d= new Date(element.start);
+          let e = new Date(element.finish);
+
+          if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+            var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+            $('#3').append(string);
+          }
+        });
+
+        data.u4.forEach(element => {
+         
+          let d= new Date(element.start);
+              let e = new Date(element.finish);
+
+              if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
+                var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+            $('#4').append(string);
+          }
+        });
+
+
+        $('#right').attr('disabled',false);
+        $('#left').attr('disabled',false);
+          
+
+
+
+      });
+
+
+
+
+
+    }
+    });
 
 
 

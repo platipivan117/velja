@@ -140,8 +140,22 @@ textarea { height: 80px; resize: none; }
 .datum{
   margin: auto;
   width: 50%;
+  
 }
-
+.datepicker-here{
+  margin-top: 15px; 
+}
+input {
+  padding: 5px;
+}
+.kanta{
+  transition: 0.2s linear   ;
+  background-color: white;
+  border:none;
+}
+.kanta:hover{
+  color: red;
+}
 
 
 
