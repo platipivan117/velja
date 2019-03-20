@@ -116,6 +116,7 @@ $( document ).ready((e)=>{
 
 
         $('#right').attr('disabled',false);
+        $('#left').attr('disabled',false);
 
           
 
