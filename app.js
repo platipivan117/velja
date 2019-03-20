@@ -22,6 +22,7 @@ app.get('/zak',routes.zak);
 app.get('/zak/data',routes.date);
 app.post('/dodaj',routes.dodaj);
 app.get('*',routes.err);
+app.delete('/izbrisi/:id',routes.del);
 
 
 
