@@ -2,6 +2,7 @@ var express=require('express');
 var mongodb=require('mongodb');
 var bodyparser= require('body-parser');
 var assert= require('assert');
+var ObjectID= mongodb.ObjectID;
 
 var url="mongodb+srv://Ivan:japibog123@veljabaza-w0aug.gcp.mongodb.net/test?retryWrites=true";
 var dbname='VeljaBaza';
@@ -130,4 +131,26 @@ exports.dodaj = (req,res)=>{
 };
 exports.err=(req,res)=>{
     res.redirect('/zak');
+};
+exports.del=(req,res)=>{
+console.log(req.params.id);
+var obj ={
+    _id: ObjectID(req.params.id)
+}
+mongodb.connect(url,(err,client)=>{
+    assert.equal(null,err);
+    const db= client.db(dbname);
+    
+    db.collection('baza').deleteOne(obj,(err,res)=>{
+        assert.equal(null,err);
+        console.log(JSON.stringify(obj)+"izbacen");
+        client.close();
+        
+        
+    });
+   
+    res.redirect('/');
+
+});
+
 };
