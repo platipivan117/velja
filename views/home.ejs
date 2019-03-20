@@ -1,16 +1,42 @@
 <html>
-    <head>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    </head>
+<head>
+  <title>Firebase Login</title>
+  <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
 
-<h1>home</h1>
+  <div id="login_div" class="main-div">
+    <h3>Login</h3>
+    <input type="email" placeholder="Email..." id="email_field" />
+    <input type="password" placeholder="Password..." id="password_field" />
+
+    <button onclick="login()">Login</button>
+  </div>
+
+  <div id="user_div" class="loggedin-div">
+    <h3>Dobrodosli</h3>
+    <p id="user_para">Dobrodosli</p>
+
+    <button onclick="logout()">Logout</button>
+  </div>
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/5.9.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBME0LD3_ru8ulbFq2EJ7w-uGdgPusXV1A",
+    authDomain: "velja-431f4.firebaseapp.com",
+    databaseURL: "https://velja-431f4.firebaseio.com",
+    projectId: "velja-431f4",
+    storageBucket: "velja-431f4.appspot.com",
+    messagingSenderId: "389253426279"
+  };
+  firebase.initializeApp(config);
+</script>
+  <script src="index.js"></script>
+
 </body>
-
-
-
-<a href="/zak"><button class="btn btn-primary">ZAK</button></a>
-
-
-
 </html>

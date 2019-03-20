@@ -9,8 +9,11 @@ var nizDatuma4=[];
 var stringDatuma="";
 
   
-  // POPUNJAVA ZA DANASNJI TJ TRENUTNI DATUM ONLOAD
+  // POPUNJAVA ZA DANASNJI TJ TRENUTNI DATUM ONLO
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
 $( document ).ready((e)=>{
+  
   $('#postdugme').attr('disabled',false);
    // e.preventDefault();
         date= new Date();
@@ -110,11 +113,12 @@ $( document ).ready((e)=>{
             }).done((response)=>{
                 alert("Da");
             });
-            Render();
+            
           }
           else {
             return 1;
           }
+          Render();
         });
 
 
@@ -349,13 +353,10 @@ $('#postdugme').click((e)=>{
         start: new Date(element.start),
         finish: new Date(element.finish)
       }
-<<<<<<< HEAD
+
       obj.start.setHours(obj.start.getHours()+1);
       obj.finish.setHours(obj.finish.getHours()+1);
-=======
-      obj.start.setHours(obj.start.getHours());
-      obj.finish.setHours(obj.finish.getHours());
->>>>>>> 7616f27973ae87e72cd77c188aea7dceb6d0c050
+
      
 
       nizDatuma1.push(obj);
@@ -501,3 +502,9 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
 
 
 });
+    }
+    else{
+      
+      window.location.replace("https://ucionice.herokuapp.com/")
+    }
+  });
