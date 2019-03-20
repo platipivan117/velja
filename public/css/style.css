@@ -69,9 +69,10 @@ textarea { height: 80px; resize: none; }
 }
 .card{
     
-    display: inline-block!important;
-    float: left;
+    margin:auto;
+
     border: none;
+    
  
      
 
