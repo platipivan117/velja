@@ -71,7 +71,7 @@ $( document ).ready((e)=>{
             let e = new Date(element.finish);
 
             if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-              var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+              var string="<div class=\"card-text u2\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
             $('#2').append(string);
           }
         });
@@ -81,7 +81,7 @@ $( document ).ready((e)=>{
           let e = new Date(element.finish);
 
           if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+            var string="<div class=\"card-text u3\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
             $('#3').append(string);
           }
         });
@@ -92,7 +92,7 @@ $( document ).ready((e)=>{
               let e = new Date(element.finish);
 
               if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-                var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+                var string="<div class=\"card-text u4\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
             $('#4').append(string);
           }
         });
@@ -104,9 +104,9 @@ $( document ).ready((e)=>{
               type: 'DELETE',
               url: '/izbrisi/'+$(this).data('id')
             }).done((response)=>{
-             location.reload();
+            
             });
-        
+            location.reload();
           }
           else {
             return 1;
@@ -177,7 +177,7 @@ $('#right').click((e)=>{
             let e = new Date(element.finish);
 
             if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-              var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+              var string="<div class=\"card-text u1\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
             $('#1').append(string);
           }
                  
@@ -190,7 +190,7 @@ $('#right').click((e)=>{
             let e = new Date(element.finish);
 
             if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-              var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+              var string="<div class=\"card-text u2\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
             $('#2').append(string);
           }
         });
@@ -200,7 +200,7 @@ $('#right').click((e)=>{
           let e = new Date(element.finish);
 
           if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+            var string="<div class=\"card-text u3\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
             $('#3').append(string);
           }
         });
@@ -211,15 +211,31 @@ $('#right').click((e)=>{
               let e = new Date(element.finish);
 
               if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-                var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+                var string="<div class=\"card-text u4\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
             $('#4').append(string);
           }
         });
-
+        
 
         $('#right').attr('disabled',false);
         $('#left').attr('disabled',false);
-          
+        
+        $(".kanta").click(function(){
+          alert("das");
+          var confirmation=confirm("are you sure?");
+          if(confirmation){
+            $.ajax({
+              type: 'DELETE',
+              url: '/izbrisi/'+$(this).data('id')
+            }).done((response)=>{
+            
+            });
+            location.reload();
+          }
+          else {
+            return 1;
+          }
+        });
 
 
 
@@ -291,7 +307,7 @@ $('#left').click((e)=>{
           let e = new Date(element.finish);
 
           if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+            var string="<div class=\"card-text u1\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
            $('#1').append(string);
          }
                 
@@ -303,7 +319,7 @@ $('#left').click((e)=>{
           let e = new Date(element.finish);
 
           if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+            var string="<div class=\"card-text u2\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
            $('#2').append(string);
          }
        });
@@ -313,7 +329,7 @@ $('#left').click((e)=>{
         let e = new Date(element.finish);
 
         if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-          var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+          var string="<div class=\"card-text u3\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
            $('#3').append(string);
          }
        });
@@ -324,15 +340,30 @@ $('#left').click((e)=>{
         let e = new Date(element.finish);
 
         if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-          var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+          var string="<div class=\"card-text u4\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
            $('#4').append(string);
          }
        });
-
-
+       
        $('#right').attr('disabled',false);
        $('#left').attr('disabled',false);
 
+       $(".kanta").click(function(){
+        alert("das");
+        var confirmation=confirm("are you sure?");
+        if(confirmation){
+          $.ajax({
+            type: 'DELETE',
+            url: '/izbrisi/'+$(this).data('id')
+          }).done((response)=>{
+          
+          });
+          location.reload();
+        }
+        else {
+          return 1;
+        }
+      });
          
 
 
@@ -677,7 +708,7 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
             let e = new Date(element.finish);
 
             if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-              var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+              var string="<div class=\"card-text u2\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
             $('#2').append(string);
           }
         });
@@ -687,7 +718,7 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
           let e = new Date(element.finish);
 
           if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-            var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+            var string="<div class=\"card-text u3\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
             $('#3').append(string);
           }
         });
@@ -698,10 +729,11 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
               let e = new Date(element.finish);
 
               if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-                var string="<div class=\"card-text\">" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"</div>"
+                var string="<div class=\"card-text u4\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
             $('#4').append(string);
           }
         });
+        
 
 
         $('#right').attr('disabled',false);
@@ -715,9 +747,9 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
               type: 'DELETE',
               url: '/izbrisi/'+$(this).data('id')
             }).done((response)=>{
-             location.reload();
+             
             });
-        
+            location.reload();
           }
           else {
             return 1;
@@ -740,4 +772,3 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
 
 
 });
-

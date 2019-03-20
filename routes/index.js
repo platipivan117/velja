@@ -149,7 +149,7 @@ mongodb.connect(url,(err,client)=>{
         
     });
    
-    res.redirect('/zak');
+    res.redirect('/');
 
 });
 
