@@ -349,8 +349,13 @@ $('#postdugme').click((e)=>{
         start: new Date(element.start),
         finish: new Date(element.finish)
       }
+<<<<<<< HEAD
       obj.start.setHours(obj.start.getHours()+1);
       obj.finish.setHours(obj.finish.getHours()+1);
+=======
+      obj.start.setHours(obj.start.getHours());
+      obj.finish.setHours(obj.finish.getHours());
+>>>>>>> 7616f27973ae87e72cd77c188aea7dceb6d0c050
      
 
       nizDatuma1.push(obj);
