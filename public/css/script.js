@@ -97,7 +97,7 @@ $( document ).ready((e)=>{
           }
         });
         $(".kanta").click(function(){
-          alert("das");
+          
           var confirmation=confirm("are you sure?");
           if(confirmation){
             $.ajax({
@@ -221,7 +221,7 @@ $('#right').click((e)=>{
         $('#left').attr('disabled',false);
         
         $(".kanta").click(function(){
-          alert("das");
+
           var confirmation=confirm("are you sure?");
           if(confirmation){
             $.ajax({
@@ -349,7 +349,7 @@ $('#left').click((e)=>{
        $('#left').attr('disabled',false);
 
        $(".kanta").click(function(){
-        alert("das");
+
         var confirmation=confirm("are you sure?");
         if(confirmation){
           $.ajax({
