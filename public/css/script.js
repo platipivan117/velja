@@ -199,7 +199,6 @@ function Provera() {
 
   var nizDatuma=[];
  
- 
 
   
  
@@ -212,7 +211,8 @@ function Provera() {
   n=s2.split(":");
 
   var dateUnetFinish= new Date(date.getFullYear(),date.getMonth(),date.getDate(),n[0],n[1]);
- 
+ alert(dateUnetFinish);
+ alert(dateUnetStart);
    
  if(kliknutaUcionica==1){
    nizDatuma=nizDatuma1;
@@ -227,7 +227,6 @@ else if(kliknutaUcionica==4){
   nizDatuma=nizDatuma4;
 }
 
- 
 
  
 
