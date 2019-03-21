@@ -141,9 +141,11 @@ $('#right').click((e)=>{
      
  
      $( ".card-text" ).remove();
-        var newdate= new Date();
+        var newdate= date;
         
         newdate.setDate(date.getDate()+1);
+        newdate.setMonth(date.getMonth());
+        
         date=newdate;
         
         stringDatuma= date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()+".";
@@ -166,18 +168,16 @@ $('#left').click((e)=>{
     e.preventDefault();
     $('#left').attr('disabled',true);
     $('#right').attr('disabled',true);
-    var today= new Date();
-    today.setDate(today.getDate()+1);
+ 
     
     
-    if(today.getDate()==date.getDate()&&today.getMonth()==date.getMonth() ){
-        $('#left').css('display','none');
-    }
+    
  
     $( ".card-text" ).remove();
-       var newdate= new Date();
+       var newdate= date;
        
        newdate.setDate(date.getDate()-1);
+       newdate.setMonth(date.getMonth());
        date=newdate;
        stringDatuma= date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()+".";
        $(".datum").html("<h1>"+stringDatuma+"</h1>");
@@ -354,8 +354,8 @@ $('#postdugme').click((e)=>{
         finish: new Date(element.finish)
       }
 
-      obj.start.setHours(obj.start.getHours()+1);
-      obj.finish.setHours(obj.finish.getHours()+1);
+      obj.start.setHours(obj.start.getHours());
+      obj.finish.setHours(obj.finish.getHours());
 
      
 
@@ -377,8 +377,8 @@ $('#postdugme').click((e)=>{
        start: new Date(element.start),
        finish: new Date(element.finish)
      }
-     obj.start.setHours(obj.start.getHours()+1);
-      obj.finish.setHours(obj.finish.getHours()+1);
+     obj.start.setHours(obj.start.getHours());
+      obj.finish.setHours(obj.finish.getHours());
      nizDatuma2.push(obj);
    });
 
@@ -394,8 +394,8 @@ $('#postdugme').click((e)=>{
       start: new Date(element.start),
       finish: new Date(element.finish)
     }
-    obj.start.setHours(obj.start.getHours()+1);
-      obj.finish.setHours(obj.finish.getHours()+1);
+    obj.start.setHours(obj.start.getHours());
+      obj.finish.setHours(obj.finish.getHours());
     nizDatuma3.push(obj);
   });
 
@@ -413,8 +413,8 @@ $('#postdugme').click((e)=>{
      start: new Date(element.start),
      finish: new Date(element.finish)
    }
-   obj.start.setHours(obj.start.getHours()+1);
-      obj.finish.setHours(obj.finish.getHours()+1);
+   obj.start.setHours(obj.start.getHours());
+      obj.finish.setHours(obj.finish.getHours());
    nizDatuma4.push(obj);
  });
 
@@ -505,6 +505,7 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
     }
     else{
       
-      window.location.replace("https://ucionice.herokuapp.com/")
+      //window.location.replace("https://ucionice.herokuapp.com/");
+      window.location.replace("http://localhost5000:/");
     }
   });
