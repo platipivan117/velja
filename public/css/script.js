@@ -238,20 +238,20 @@ validacija=false;
 for(var i=1;i<nizDatuma.length;i++){
   
 
-  if((nizDatuma[i-1].start.getTime()<dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetStart.getTime()))  {
+  if((nizDatuma[i-1].start.getTime()<=dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()>=dateUnetStart.getTime()))  {
 
 
     validacija=false;
     provera=false;
     break;
 }
-else if(nizDatuma[i-1].start.getTime()<dateUnetFinish.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetFinish.getTime()){
+else if(nizDatuma[i-1].start.getTime()<=dateUnetFinish.getTime() && nizDatuma[i-1].finish.getTime()>=dateUnetFinish.getTime()){
    
     validacija=false;
     provera=false;
     break;
 }
-else if(nizDatuma[i-1].start.getTime()>dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()<dateUnetFinish.getTime()){
+else if(nizDatuma[i-1].start.getTime()>=dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()<=dateUnetFinish.getTime()){
   
     validacija=false;
     provera=false;
@@ -503,7 +503,7 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
     }
     else{
       
-      window.location.replace("https://ucionice.herokuapp.com/");
-      //window.location.replace("http://localhost5000:/");
+      //window.location.replace("https://ucionice.herokuapp.com/");
+      window.location.replace("http://localhost5000:/");
     }
   });
