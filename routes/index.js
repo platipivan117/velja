@@ -154,3 +154,6 @@ mongodb.connect(url,(err,client)=>{
 });
 
 };
+exports.kalendar = (req,res)=>{
+    res.render('kalendar');
+};
