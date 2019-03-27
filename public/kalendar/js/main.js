@@ -1,22 +1,139 @@
 jQuery(document).ready(function($){
+		var date = new Date();
+		var granicaP=new Date();
+		var granicaZ=new Date();
+
 		//$(".ponedeljak").append("<li class=\"single-event\" data-start=\"14:00\" data-end=\"15:15\"   data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">Yoga Level 1<\/em><\/a><\/li>");
 	
 		//get req
+	function Render(kliknutaUcionica){	
 		$.get('/zak/data',(data,status)=>{
+			ufil= [];
+			
 
-
-			alert(JSON.stringify(data));
+			
 			
 			
 			
 			//$(".ponedeljak").append("<li class=\"single-event\" data-start=\"14:00\" data-end=\"15:15\"   data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">Yoga LeveDSADl 1<\/em><\/a><\/li>");
 			
 			
-			// 1. dinimacki popuni sve za danasnji datum +7
+			// 1. dinimacki popuni sve za danasnji datum +5 *dodati da reaguje na promenu ucionice
+
+
+				// kreiranje granicnih datuma
+					var n= date.getDay();
+					
+					if(n==1){
+						granicaP=date;
+						granicaZ.setDate(date.getDate()+4);
+						n= granicaZ.getDay();
+					
+					}
+					else if(n==5){
+						granicaZ=date;
+						granicaP= date.setDate(date.getDate()-4);
+					}
+					else{
+						var br=0;
+						var i=n;
+						while(i>1){
+							i--;
+							br++;
+						}
+						granicaP.setDate(date.getDate()-br);
+						granicaZ.setDate(granicaP.getDate()+5);
+						granicaP.setHours(6);
+						granicaP.setMinutes(0);
+						granicaZ.setHours(23);
+						granicaZ.setMinutes(55);
+						
+
+					}
+					
+
+						// popunjavanje niza samo datumima koji su u okviru
+						if(kliknutaUcionica==1){
+							data.u1.forEach((element)=>{
+              
+            
+								var dateUpo= new Date(element.start);
+								if(dateUpo.getTime()>=granicaP.getTime()&& dateUpo.getTime()<=granicaZ.getTime()){
+									ufil.push(element);
+								}
+								
+							});
+						  }
+						  else if(kliknutaUcionica==2){
+							data.u2.forEach((element)=>{
+              
+            
+								var dateUpo= new Date(element.start);
+								if(dateUpo.getTime()>=granicaP.getTime()&& dateUpo.getTime()<=granicaZ.getTime()){
+									ufil.push(element);
+								}
+								
+							});
+						  }
+						  else if(kliknutaUcionica==3){
+							data.u3.forEach((element)=>{
+              
+            
+								var dateUpo= new Date(element.start);
+								if(dateUpo.getTime()>=granicaP.getTime()&& dateUpo.getTime()<=granicaZ.getTime()){
+									ufil.push(element);
+								}
+								
+							});
+						 }
+						 else if(kliknutaUcionica==4){
+							data.u4.forEach((element)=>{
+              
+            
+								var dateUpo= new Date(element.start);
+								if(dateUpo.getTime()>=granicaP.getTime()&& dateUpo.getTime()<=granicaZ.getTime()){
+									ufil.push(element);
+								}
+								
+							});
+						 }
+						 
+					
+					
+						
+						// iscrtavanje stavki
+						ufil.forEach((element)=>{
+							var dateStart= new Date(element.start);
+							var dateFinish= new Date(element.finish);
+
+							var strStart=dateStart.getHours()+":"+dateStart.getMinutes();
+							var strFinish=dateFinish.getHours()+":"+dateFinish.getMinutes();
+
+							if(new Date(element.start).getDay()==1){
+
+								$(".ponedeljak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\"   data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+
+							}
+							else if(new Date(element.start).getDay()==2){
+								$(".utorak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\"   data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+							}
+							else if(new Date(element.start).getDay()==3){
+								$(".sreda").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\"   data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+							}
+							else if(new Date(element.start).getDay()==4){
+								$(".cetvrtak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\"   data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+							}
+							else if(new Date(element.start).getDay()==5){
+								$(".petak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\"   data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+							}
+
+						});
+
+
 
 			// 2. ubacimo strlice,i kalendarce,da radi na po 7 dana
 
-			// 3. alg provera da se ubaci,i popup forma na mon/tu/wen za zakazivanje
+			// 3. alg provera da se ubaci,i pop-up forma na mon/tu/wen za zakazivanje
 			
 			// 4. brisanje
 
@@ -43,6 +160,7 @@ jQuery(document).ready(function($){
 			Callback();
 		});
 	
+	}
 	
 	
 	
@@ -63,8 +181,7 @@ jQuery(document).ready(function($){
 	
 	
 	
-	
-	
+	Render(1);
 	
 	
 	
