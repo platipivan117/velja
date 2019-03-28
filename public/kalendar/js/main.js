@@ -1,18 +1,74 @@
+
+
 jQuery(document).ready(function($){
-		var date = new Date();
+	$('#right').attr('disabled',false);
+		$('#left').attr('disabled',false);
 		var granicaP=new Date();
 		var granicaZ=new Date();
+		
+		 var dateString = window.location.href.split('/');
+		 var date = new Date();
+		 var n= date.getDay();
+				 
+	 if(n==1){
+		 granicaP=date;
+		 granicaZ.setDate(date.getDate()+4);
+		 n= granicaZ.getDay();
+	 
+	 }
+	 else if(n==5){
+		 granicaZ=date;
+		 granicaP= date.setDate(date.getDate()-4);
+	 }
+	 else{
+		 var br=0;
+		 var i=n;
+		 while(i>1){
+			 i--;
+			 br++;
+		 }
+		 granicaP.setDate(date.getDate()-br);
+		 granicaZ.setDate(granicaP.getDate()+5);
+		 granicaP.setHours(6);
+		 granicaP.setMinutes(0);
+		 granicaZ.setHours(23);
+		 granicaZ.setMinutes(55);
+		 
+
+	 }
+		 if(dateString[4]==""){
+		
+		 }
+		 else{
+			 granicaP=new Date(dateString[4].replace("%22","").replace("%22",""));
+				granicaZ= new Date(dateString[4].replace("%22","").replace("%22",""));
+				granicaZ.setDate(granicaZ.getDate()+7);
+			 
+		 }
+		 alert(granicaP);
+		 alert(granicaZ);
+		
+		 
+		
+
+
+	
 
 		//$(".ponedeljak").append("<li class=\"single-event\" data-start=\"14:00\" data-end=\"15:15\"   data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">Yoga Level 1<\/em><\/a><\/li>");
-	
+		
+		// kreiranje granicnih datuma
+		
 		//get req
-	function Render(kliknutaUcionica){	
+	function Render(kliknutaUcionica, ){	
 		$.get('/zak/data',(data,status)=>{
 			ufil= [];
 			
-
 			
 			
+			
+		
+			
+		
 			
 			
 			//$(".ponedeljak").append("<li class=\"single-event\" data-start=\"14:00\" data-end=\"15:15\"   data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">Yoga LeveDSADl 1<\/em><\/a><\/li>");
@@ -21,35 +77,7 @@ jQuery(document).ready(function($){
 			// 1. dinimacki popuni sve za danasnji datum +5 *dodati da reaguje na promenu ucionice
 
 
-				// kreiranje granicnih datuma
-					var n= date.getDay();
-					
-					if(n==1){
-						granicaP=date;
-						granicaZ.setDate(date.getDate()+4);
-						n= granicaZ.getDay();
-					
-					}
-					else if(n==5){
-						granicaZ=date;
-						granicaP= date.setDate(date.getDate()-4);
-					}
-					else{
-						var br=0;
-						var i=n;
-						while(i>1){
-							i--;
-							br++;
-						}
-						granicaP.setDate(date.getDate()-br);
-						granicaZ.setDate(granicaP.getDate()+5);
-						granicaP.setHours(6);
-						granicaP.setMinutes(0);
-						granicaZ.setHours(23);
-						granicaZ.setMinutes(55);
-						
-
-					}
+			
 					
 
 						// popunjavanje niza samo datumima koji su u okviru
@@ -108,7 +136,7 @@ jQuery(document).ready(function($){
 
 							var strStart=dateStart.getHours()+":"+dateStart.getMinutes();
 							var strFinish=dateFinish.getHours()+":"+dateFinish.getMinutes();
-
+								
 							if(new Date(element.start).getDay()==1){
 
 								$(".ponedeljak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\"   data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
@@ -131,12 +159,9 @@ jQuery(document).ready(function($){
 
 
 
-			// 2. ubacimo strlice,i kalendarce,da radi na po 7 dana
+	
 
-			// 3. alg provera da se ubaci,i pop-up forma na mon/tu/wen za zakazivanje
 			
-			// 4. brisanje
-
 			
 			
 			
@@ -158,6 +183,12 @@ jQuery(document).ready(function($){
 			
 			
 			Callback();
+		
+			
+		
+
+			
+			
 		});
 	
 	}
@@ -165,7 +196,28 @@ jQuery(document).ready(function($){
 	
 	
 	
+			// 2. ubacimo strlice,i kalendarce,da radi na po 7 dana
+	$('#right').click((e)=>{
+		
+		granicaP.setDate(granicaP.getDate()+7);
+		//granicaZ.setDate(granicaZ.getDate()+7);
+		window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
+		
 	
+
+			});
+$('#left').click((e)=>{
+	
+		granicaP.setDate(granicaP.getDate()-7);
+		window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
+
+		
+					});
+
+
+			// 3. alg provera da se ubaci,i pop-up forma na mon/tu/wen za zakazivanje
+			
+			// 4. brisanje
 	
 	
 	
@@ -185,6 +237,15 @@ jQuery(document).ready(function($){
 	
 	
 	
+
+
+	
+	
+
+
+	
+	
+	
 	
 	
 	
@@ -197,6 +258,9 @@ jQuery(document).ready(function($){
 	
 	
 	function Callback() {
+		
+		
+
 		var transitionEnd = 'webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend';
 	var transitionsSupported = ( $('.csstransitions').length > 0 );
 	//if browser does not support transitions - use a different event to trigger them
@@ -228,7 +292,10 @@ jQuery(document).ready(function($){
 
 		this.animating = false;
 
+	
 		this.initSchedule();
+		
+		
 	}
 
 	SchedulePlan.prototype.initSchedule = function() {
@@ -258,6 +325,7 @@ jQuery(document).ready(function($){
 			this.element.removeClass('loading');
 		}
 	};
+
 
 	SchedulePlan.prototype.initEvents = function() {
 		var self = this;
@@ -537,7 +605,9 @@ jQuery(document).ready(function($){
 		schedules.each(function(){
 			//create SchedulePlan objects
 			objSchedulesPlan.push(new SchedulePlan($(this)));
+
 		});
+
 	}
 
 	$(window).on('resize', function(){
@@ -579,8 +649,10 @@ jQuery(document).ready(function($){
 			'transform': value
 		});
 	}
+	
 
 	}
+
 });
 	
 	
