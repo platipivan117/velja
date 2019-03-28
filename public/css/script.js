@@ -503,7 +503,7 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
     }
     else{
       
-      //window.location.replace("https://ucionice.herokuapp.com/");
-      window.location.replace("http://localhost5000:/");
+      window.location.replace("https://ucionice.herokuapp.com/");
+      //window.location.replace("http://localhost5000:/");
     }
   });
