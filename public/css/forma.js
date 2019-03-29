@@ -1,4 +1,4 @@
-$(function() {
+jQuery(document).ready(function($){
   
     // contact form animations
     $('.contact').click(function() {

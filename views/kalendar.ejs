@@ -7,24 +7,52 @@
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
 	<link rel="stylesheet" href="/kalendar/css/reset.css"> <!-- CSS reset -->
 	<link rel="stylesheet" href="/kalendar/css/style.css"> <!-- Resource style -->
+	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-           
-               
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="../css/datejs.js"></script>
+	 <script src="../css/datejs-en.js"></script>   
+	 <script src="../css/forma.js"></script>
             
+	 <link rel="stylesheet" href="../css/datecss.css">  
+	 <link href="https://fonts.googleapis.com/css?family=Lora|Merriweather" rel="stylesheet">
+               
+             
   	
 	<title>Schedule Template | CodyHouse</title>
 </head>
 <body>
+		<div id="contactForm">
+
+				<h1>Zakazivanje</h1>
+				<small></small>
+				<small>Datum</small>
+				<form action="#">
+						<select name="Datum" id="sel" select>
+					  
+					</select>
+				
+				  <input placeholder="Profesor" type="text" id="profesor" required />
+				  <input placeholder="Pocetak"  type="text"id="11" required />
+				  <input placeholder="Kraj" type="text"id="22" required />
+				  <textarea placeholder="Komentar" id="komentar"></textarea>
+				  <button id="postdugme" class="btn btn-primary">Zakazi</button>
+				
+				  
+				</form>
+			  </div>
+		<div class="container">
+				<input type='text' class="datepicker-here"  />
+				</div> 
 		<button class="btn btn-primary button1" id="left" disabled= "true"> <i class="fas fa-arrow-left"></i></button>
 
     
-		<button class="btn btn-primary button1" id="lupa"><i class="fas fa-search"></i></button>
+		<button class="btn btn-primary button1 contact" id="lupa"><i class="fas fa-search"></i></button>
 		<button class="btn btn-primary button1" id="right" disabled= "true"><i class="fas fa-arrow-right"></i></button>
 <div class="cd-schedule loading">
 	<div class="timeline">
 		<ul>
-			<li><span>08:00</span></li>
+			<li><span class="contact">08:00</span></li>
 			<li><span>08:30</span></li>
 			<li><span>09:00</span></li>
 			<li><span>09:30</span></li>
@@ -129,6 +157,7 @@
 	</div>
 
 	<div class="cover-layer"></div>	
+	
 </div> <!-- .cd-schedule -->
 <script src="/kalendar/js/modernizr.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
