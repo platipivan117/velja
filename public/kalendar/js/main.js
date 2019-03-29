@@ -18,7 +18,8 @@ jQuery(document).ready(function($){
 	 }
 	 else if(n==5){
 		 granicaZ=date;
-		 granicaP= date.setDate(date.getDate()-4);
+		 granicaP.setDate(date.getDate()-4);
+		 
 	 }
 	 else{
 		 var br=0;
@@ -33,6 +34,7 @@ jQuery(document).ready(function($){
 		 granicaP.setMinutes(0);
 		 granicaZ.setHours(23);
 		 granicaZ.setMinutes(55);
+
 		 
 
 	 }
@@ -45,9 +47,7 @@ jQuery(document).ready(function($){
 				granicaZ.setDate(granicaZ.getDate()+7);
 			 
 		 }
-		 alert(granicaP);
-		 alert(granicaZ);
-		
+	
 		 
 		
 
@@ -201,7 +201,7 @@ jQuery(document).ready(function($){
 		
 		granicaP.setDate(granicaP.getDate()+7);
 		//granicaZ.setDate(granicaZ.getDate()+7);
-		//window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
+	//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
 		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
 		
 	
@@ -211,7 +211,7 @@ $('#left').click((e)=>{
 	
 		granicaP.setDate(granicaP.getDate()-7);
 	//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
-		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
+	window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
 
 		
 					});
@@ -226,7 +226,7 @@ $('#left').click((e)=>{
 	
 	
 	
-	
+		
 	
 	
 	
