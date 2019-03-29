@@ -317,11 +317,17 @@ Main Components
 
 .cd-schedule .single-event[data-event="event-3"],
 .cd-schedule [data-event="event-3"] .header-bg {
-  background: #A2B9B2;
+  background: linear-gradient(90deg,#2a7d8c
+  ,  #4cb2c4);
+  
+}
+.single-event[data-event="event-3"]{
+  transition: 1s linear ;
 }
 
 .cd-schedule .single-event[data-event="event-3"]:hover {
-  background: #b1c4be;
+  background: linear-gradient(90deg,#2a7d8c,#4cb2c4
+  );
 }
 
 .cd-schedule .single-event[data-event="event-4"],
@@ -603,4 +609,7 @@ Main Components
 .cd-schedule.modal-is-open .cover-layer {
   opacity: 1;
   visibility: visible;
+}
+.single-event{
+  transition: 1s linear ease;
 }
