@@ -201,7 +201,8 @@ jQuery(document).ready(function($){
 		
 		granicaP.setDate(granicaP.getDate()+7);
 		//granicaZ.setDate(granicaZ.getDate()+7);
-		window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
+		//window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
+		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
 		
 	
 
@@ -209,7 +210,8 @@ jQuery(document).ready(function($){
 $('#left').click((e)=>{
 	
 		granicaP.setDate(granicaP.getDate()-7);
-		window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
+	//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
+		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
 
 		
 					});
