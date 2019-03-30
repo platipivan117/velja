@@ -14,6 +14,8 @@ var nizDatuma4=[];
 		 var dateString = window.location.href.split('/');
 		 var date = new Date();
 		 var n= date.getDay();
+	
+		
 				 
 	 if(n==1){
 		 granicaP=date;
@@ -52,6 +54,7 @@ var nizDatuma4=[];
 			 granicaP=new Date(dateString[4].replace("%22","").replace("%22",""));
 				granicaZ= new Date(dateString[4].replace("%22","").replace("%22",""));
 				granicaZ.setDate(granicaZ.getDate()+7);
+				kliknutaUcionica=dateString[dateString.length-1];
 			 
 		 }
 		 
@@ -59,7 +62,7 @@ var nizDatuma4=[];
 		 trDate.setDate(granicaP.getDate());
 		 trDate.setMonth(granicaP.getMonth());
 		 
-		 
+		 $("#maliU").html("Trenutna ucionica je "+kliknutaUcionica);
 		 
 	
 		 $('.top-info > span').each(function (br){
@@ -156,7 +159,17 @@ var nizDatuma4=[];
 						 }
 						 
 					
-					
+					//ufil.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
+					ufil.sort((a,b)=>{
+						a= new Date(a.start);
+						b=new Date(b.start);
+						if(a.getTime()>b.getTime()){
+							return 1;
+						}
+						else{
+							return -1;
+						}
+					})
 						
 						// iscrtavanje stavki
 						ufil.forEach((element)=>{
@@ -168,27 +181,44 @@ var nizDatuma4=[];
 								
 							if(new Date(element.start).getDay()==1){
 
-								$(".ponedeljak").append("<li class=\"single-event\" data-start=\""+strStart+"\"  data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+								$(".ponedeljak").append("<li class=\"single-event\" data-start=\""+strStart+"\"  data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></i></span>"+"<\/em><\/a><\/li>");
 
 							}
 							else if(new Date(element.start).getDay()==2){
-								$(".utorak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\"  data-komentar=\""+element.komentar+"\" data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+								$(".utorak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\"  data-komentar=\""+element.komentar+"\" data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></i></span>"+"<\/em><\/a><\/li>");
 							}
 							else if(new Date(element.start).getDay()==3){
-								$(".sreda").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+								$(".sreda").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></i></span>"+"<\/em><\/a><\/li>");
 							}
 							else if(new Date(element.start).getDay()==4){
-								$(".cetvrtak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+								$(".cetvrtak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></i></span>"+"<\/em><\/a><\/li>");
 							}
 							else if(new Date(element.start).getDay()==5){
-								$(".petak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+								$(".petak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></i></span>"+"<\/em><\/a><\/li>");
 							}
 							else{
-								$(".subota").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<\/em><\/a><\/li>");
+								$(".subota").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></i></span>"+"<\/em><\/a><\/li>");
 							}
 
 						});
-
+						$(".kanta").click(function(){
+          
+							var confirmation=confirm("are you sure?");
+							if(confirmation){
+								$.ajax({
+									type: 'DELETE',
+									url: '/izbrisi/'+$(this).data('id')
+								}).done((response)=>{
+										alert("Da");
+								});
+								
+							}
+							else {
+								return 1;
+							}
+						//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
+								window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
+						});
 
 
 	
@@ -233,8 +263,8 @@ var nizDatuma4=[];
 		
 		granicaP.setDate(granicaP.getDate()+7);
 		//granicaZ.setDate(granicaZ.getDate()+7);
-		window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
-	//	window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
+	//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
+		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
 		
 	
 
@@ -242,8 +272,8 @@ var nizDatuma4=[];
 $('#left').click((e)=>{
 	
 		granicaP.setDate(granicaP.getDate()-7);
-		window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
-	//	window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
+	//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
+		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
 
 		
 					});
@@ -324,7 +354,7 @@ $('#left').click((e)=>{
 		 
 				var dateniz=$( "#sel option:selected" ).text().split('.');
 				
-				alert(JSON.stringify(dateniz));
+				
 		 
 			var dateD= new Date(dateniz[2],dateniz[1]-1,dateniz[0]);
 		
@@ -335,8 +365,7 @@ $('#left').click((e)=>{
 			n=s2.split(":");
 		
 			var dateUnetFinish= new Date(dateD.getFullYear(),dateD.getMonth(),dateD.getDate(),n[0],n[1]);
-			alert(dateUnetStart);
-			alert(dateUnetFinish);
+		
 		
 			 
 		 if(kliknutaUcionica==1){
@@ -364,26 +393,31 @@ $('#left').click((e)=>{
 		for(var i=1;i<nizDatuma.length;i++){
 			
 		
-			if((nizDatuma[i-1].start.getTime()<=dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()>=dateUnetStart.getTime()))  {
+			if((nizDatuma[i-1].start.getTime()<dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetStart.getTime()))  {
 		
 		
 				validacija=false;
 				provera=false;
 				break;
 		}
-		else if(nizDatuma[i-1].start.getTime()<=dateUnetFinish.getTime() && nizDatuma[i-1].finish.getTime()>=dateUnetFinish.getTime()){
+		else if(nizDatuma[i-1].start.getTime()<dateUnetFinish.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetFinish.getTime()){
 			 
 				validacija=false;
 				provera=false;
 				break;
 		}
-		else if(nizDatuma[i-1].start.getTime()>=dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()<=dateUnetFinish.getTime()){
+		else if(nizDatuma[i-1].start.getTime()>dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()<dateUnetFinish.getTime()){
 			
 				validacija=false;
 				provera=false;
 				break;
 		}
-		else if(dateUnetStart.getTime()< nizDatuma[i].start.getTime() && dateUnetFinish.getTime()<nizDatuma[i].start.getTime()){
+		else if(dateUnetStart.getTime()==nizDatuma[i-1].start.getTime()&&dateUnetFinish.getTime()==nizDatuma[i-1].finish.getTime() ){
+			validacija=false;
+				provera=false;
+				break;
+		}
+		else if(dateUnetStart.getTime()<=nizDatuma[i].start.getTime() && dateUnetFinish.getTime()<=nizDatuma[i].start.getTime()){
 		 
 				 validacija=true;
 				 break;
@@ -405,13 +439,13 @@ $('#left').click((e)=>{
 				$.post( "/dodaj",data, function( data ) {
 					alert("Zakazan cas");
 					console.log("post izvrsen");
-					window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
-					//	window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
+				//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
+						window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
 				});
 		}
 		else{
-		
-				if(dateUnetStart.getTime()>nizDatuma[nizDatuma.length-1].finish.getTime()  ){
+			
+				if(dateUnetStart.getTime()>=nizDatuma[nizDatuma.length-1].finish.getTime()  ){
 						
 						var data ={
 							start: dateUnetStart,
@@ -425,14 +459,14 @@ $('#left').click((e)=>{
 							
 							console.log("post izvrsen");
 							alert("Zakazan cas");
-							window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
-							//	window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
+						//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
+								window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
 						});
 		
 		
 				}
 				else{ 
-						alert("Termin nije dostupan");
+						alert("Termin nije dostupan ZADNJI");
 				}
 		}
 		}
@@ -584,13 +618,30 @@ $('#left').click((e)=>{
 		
 	
 	
+	$("#ucionice").change(function(){
+		var s=$("#ucionice option:selected").val();
+		
+		kliknutaUcionica=s;
+		//$("#maliU").html("Trenutna ucionica je "+kliknutaUcionica);
+		//window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
+	});
+	$("#filtr").click(()=>{
+		if($("#ucionice option:selected").text()=="Ucionica 1"){
+		//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP)+"/"+"1");
+		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP)+"/"+"1");
+		}
+		else{
+	//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
+		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
+			}
+	});
 	
 	
 	
 	
 	
 	
-	Render(1);
+	Render(kliknutaUcionica);
 	
 	
 	
@@ -613,6 +664,18 @@ $('#left').click((e)=>{
 	
 	
 	
+	$('.contact').click(function() {
+		$('#contactForm').fadeToggle();
+	})
+	$(document).mouseup(function (e) {
+		var container = $("#contactForm");
+
+		if (!container.is(e.target) // if the target of the click isn't the container...
+				&& container.has(e.target).length === 0) // ... nor a descendant of the container
+		{
+				container.fadeOut();
+		}
+	});
 	
 	function Callback() {
 		

@@ -12,8 +12,8 @@ html {
 }
 
 body {
-  font-family: 'Lora', serif;
-  font-size: 1.6rem;
+  font-family: 'Rokkitt', serif;
+  font-size: 1.6rem !important;
 
   color: #222222;
   background-color: white;
@@ -40,7 +40,7 @@ Main Components
   display: none;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 500px) {
   .cd-schedule {
     width: 90%;
     max-width: 1400px;
@@ -58,9 +58,10 @@ Main Components
 
 .cd-schedule .timeline {
   display: none;
+  margin-left:0 !important; 
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 500px) {
   .cd-schedule .timeline {
     display: block;
     position: absolute;
@@ -92,7 +93,7 @@ Main Components
   }
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 500px) {
   .cd-schedule .timeline li::after {
     width: calc(100% - 60px);
     left: 60px;
@@ -126,7 +127,7 @@ Main Components
   display: inline-block;
   line-height: 1.2;
   margin-bottom: 10px;
-  font-weight: bold;
+ 
 }
 
 .cd-schedule .events .events-group > ul {
@@ -244,7 +245,7 @@ Main Components
     margin-right: 0;
   }
   .cd-schedule .events .single-event a {
-    padding: 1.2em;
+
   }
   .cd-schedule .events .single-event:last-of-type {
     /* reset style */
@@ -256,7 +257,7 @@ Main Components
   }
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 500px) {
   .cd-schedule .events {
     /* 60px is the .timeline element width */
     width: calc(100% - 60px);
@@ -274,13 +275,13 @@ Main Components
 .cd-schedule .event-date {
   display: block;
   color: white;
-  font-weight: bold;
+ 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 .cd-schedule .event-name {
-  font-size: 2.4rem;
+  font-size: 2rem;
 }
 
 @media only screen and (min-width: 800px) {
@@ -294,7 +295,7 @@ Main Components
   font-size: 1.4rem;
   opacity: .7;
   line-height: 1.2;
-  margin-bottom: .2em;
+  
 }
 
 .cd-schedule .single-event[data-event="event-1"],
@@ -555,7 +556,7 @@ Main Components
 
 @media only screen and (min-width: 1000px) {
   .cd-schedule .event-modal .header .content {
-    padding: 1.2em;
+
   }
 }
 
@@ -1305,7 +1306,7 @@ h1{ margin: 0; }
   
 }
 
-input, textarea,select { 
+input, textarea,select,small { 
   margin: .8em auto;
   font-family: inherit; 
   text-transform: inherit; 
@@ -1331,12 +1332,83 @@ textarea { height: 80px; resize: none; }
   border: none;
   height: 30px;
 }
+.btn ,.btn-primary{
+  height: 25px;
+  background-color: transparent!important;
+
+  border: black solid 1px;
+  color:black;
+ 
+}
+.btn.btn-primary:disabled{
+
+  border:white 1px solid;
+}
+.btn.btn-primary:active{
+  
+  border:black 1px solid;
+}
+.btn-primary:hover {
+  
+  color: white;
+  background-color:black!important;
+  border:white 1px solid;
+ 
+}
+.btn-primary:focus {
+  color: black;
+  
+  border:white 1px solid;
+ 
+}
 
 
 
+.kanta{
+  transition: 0.2s linear   ;
+  background-color: transparent;
+  border:none;
+}
+.kanta:hover{
+  color: red;
+}
+#right {
+  transition: 0.1s linear;
+  margin-top: 10px; 
+  margin-left: 10%!important;
+  margin-right: 10%!important;
+  width:13% !important;
+ display: inline-block!important;
+ float: left;
+}
 
-
-
+#lupa{
+  transition: 0.1s linear;
+  margin-left: 10%!important;
+  margin-right: 10%!important;
+  width:13% !important;
+  margin-top: 10px;
+  display: inline-block!important;
+  float: left;
+}
+#left{
+  transition: 0.1s linear;
+  margin-top: 10px; 
+  margin-left: 10%!important;
+  margin-right: 10%!important;
+  width:13% !important;
+  display: inline-block!important;
+ float: left;
+}
+a:hover{
+  border: none!important;
+}
+#filtr{
+  
+  position: relative;
+  margin: auto;
+  width: 20%;
+}
 
 
 
