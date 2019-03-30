@@ -263,13 +263,12 @@ var nizDatuma4=[];
 		
 		granicaP.setDate(granicaP.getDate()+7);
 		//granicaZ.setDate(granicaZ.getDate()+7);
-<<<<<<< HEAD
-	//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
-		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
-=======
+
+
+
 	//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
 		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
->>>>>>> 662237c602602e6dc94c40c650fb4dc23765041d
+
 		
 	
 
@@ -277,13 +276,10 @@ var nizDatuma4=[];
 $('#left').click((e)=>{
 	
 		granicaP.setDate(granicaP.getDate()-7);
-<<<<<<< HEAD
-	//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP));
-		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP));
-=======
+
 	//	window.location.replace("http://localhost:5000/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
 		window.location.replace("https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP)+"/"+kliknutaUcionica);
->>>>>>> 662237c602602e6dc94c40c650fb4dc23765041d
+
 
 		
 					});
