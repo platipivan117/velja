@@ -2,7 +2,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
       alert(window.location);
-      window.location.replace(window.location+"/zak");
+      window.location.replace(window.location+"zak");
   
       document.getElementById("user_div").style.display = "block";
       document.getElementById("login_div").style.display = "none";
