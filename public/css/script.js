@@ -36,6 +36,9 @@ $( document ).ready((e)=>{
            
           
           }
+          else if (n==0){
+            granicaP.setDate(date.getDate()-6);
+          }
           else if(n==5){
            
             granicaP.setDate(date.getDate()-4);
