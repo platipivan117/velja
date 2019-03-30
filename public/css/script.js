@@ -58,7 +58,7 @@ $( document ).ready((e)=>{
           granicaP.setMinutes(0);
          
 
-          var stringPromene="https://ucionice.herokuapp.com/"+JSON.stringify(granicaP)+"/"+"1";
+          var stringPromene="https://ucionice.herokuapp.com/kalendar/"+JSON.stringify(granicaP)+"/"+"1";
           $("#linkic").attr('href',stringPromene);
           $( ".card-text" ).remove();
         
