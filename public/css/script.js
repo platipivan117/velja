@@ -32,7 +32,7 @@ $( document ).ready((e)=>{
 				 
           if(n==1){
             granicaP=date;
-            granicaZ.setDate(date.getDate()+4);
+            
            
           
           }

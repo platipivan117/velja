@@ -479,7 +479,7 @@ Main Components
   transition: none;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 500px) {
   .cd-schedule .event-modal {
     /* reset style */
     right: auto;
@@ -573,7 +573,7 @@ Main Components
   -webkit-overflow-scrolling: touch;
 }
 
-@media only screen and (min-width: 800px) {
+@media only screen and (min-width: 500px) {
   .cd-schedule.animation-completed .event-modal .close,
   .cd-schedule.content-loaded.animation-completed .event-modal .event-info {
     /* 	the .animation-completed class is added when the modal animation is completed
