@@ -23,6 +23,7 @@ var nizDatuma4=[];
 		 n= granicaZ.getDay();
 	 
 	 }
+	 
 	 else if(n==5){
 		 granicaZ=date;
 		 granicaP.setDate(date.getDate()-4);
@@ -196,7 +197,7 @@ var nizDatuma4=[];
 							else if(new Date(element.start).getDay()==5){
 								$(".petak").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></i></span>"+"<\/em><\/a><\/li>");
 							}
-							else{
+							else if(new Date(element.start).getDay()==6){
 								$(".subota").append("<li class=\"single-event\" data-start=\""+strStart+"\" data-end=\""+strFinish+"\" data-komentar=\""+element.komentar+"\"  data-event=\"event-3\"><a href=\"#0\"><em class=\"event-name\">"+element.prof+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></i></span>"+"<\/em><\/a><\/li>");
 							}
 
