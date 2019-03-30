@@ -25,8 +25,41 @@ $( document ).ready((e)=>{
         var mesec=date.getMonth()+1;
         
          function Render() {
-
+           var granicaP=new Date();
+          var n= date.getDay();
+	
+		
+				 
+          if(n==1){
+            granicaP=date;
+            granicaZ.setDate(date.getDate()+4);
            
+          
+          }
+          else if(n==5){
+           
+            granicaP.setDate(date.getDate()-4);
+            
+          }
+          else{
+            var br=0;
+            var i=n;
+            while(i>1){
+              i--;
+              br++;
+            }
+            granicaP.setDate(date.getDate()-br);
+         
+           
+            
+       
+          }
+          granicaP.setHours(6);
+          granicaP.setMinutes(0);
+         
+
+          var stringPromene="https://ucionice.herokuapp.com/"+JSON.stringify(granicaP)+"/"+"1";
+          $("#linkic").attr('href',stringPromene);
           $( ".card-text" ).remove();
         
         //get req da uzmemo potrebde podatke za datume
@@ -99,7 +132,7 @@ $( document ).ready((e)=>{
               let e = new Date(element.finish);
 
               if(d.getDate()==date.getDate()&&d.getMonth()==date.getMonth() ){
-                var string="<div class=\"card-text u4\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></span></i>"+"</div>"
+                var string="<div class=\"card-text u4\" >" +element.prof +"  "+d.getHours()+":"+d.getMinutes()+"-"+e.getHours()+":"+e.getMinutes()+"<br>"+element.komentar+"<span class=\"kanta\" data-id=\""+element._id + "\"> <i class=\"fas fa-trash-alt\"></i></span>"+"</div>"
             $('#4').append(string);
           }
         });
@@ -238,26 +271,31 @@ validacija=false;
 for(var i=1;i<nizDatuma.length;i++){
   
 
-  if((nizDatuma[i-1].start.getTime()<=dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()>=dateUnetStart.getTime()))  {
-
-
+  if((nizDatuma[i-1].start.getTime()<dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetStart.getTime()))  {
+		
+		
     validacija=false;
     provera=false;
     break;
 }
-else if(nizDatuma[i-1].start.getTime()<=dateUnetFinish.getTime() && nizDatuma[i-1].finish.getTime()>=dateUnetFinish.getTime()){
+else if(nizDatuma[i-1].start.getTime()<dateUnetFinish.getTime() && nizDatuma[i-1].finish.getTime()>dateUnetFinish.getTime()){
    
     validacija=false;
     provera=false;
     break;
 }
-else if(nizDatuma[i-1].start.getTime()>=dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()<=dateUnetFinish.getTime()){
+else if(nizDatuma[i-1].start.getTime()>dateUnetStart.getTime() && nizDatuma[i-1].finish.getTime()<dateUnetFinish.getTime()){
   
     validacija=false;
     provera=false;
     break;
 }
-else if(dateUnetStart.getTime()< nizDatuma[i].start.getTime() && dateUnetFinish.getTime()<nizDatuma[i].start.getTime()){
+else if(dateUnetStart.getTime()==nizDatuma[i-1].start.getTime()&&dateUnetFinish.getTime()==nizDatuma[i-1].finish.getTime() ){
+  validacija=false;
+    provera=false;
+    break;
+}
+else if(dateUnetStart.getTime()<=nizDatuma[i].start.getTime() && dateUnetFinish.getTime()<=nizDatuma[i].start.getTime()){
  
      validacija=true;
      break;
@@ -497,13 +535,14 @@ nizDatuma4.sort((a,b)=>(a.start.getTime()>b.start.getTime())? 1:-1);
     });
 
 
-
+    
 
 });
     }
     else{
       
       window.location.replace("https://ucionice.herokuapp.com/");
-      //window.location.replace("http://localhost5000:/");
+     // window.location.replace("http://localhost5000:/");
     }
+    
   });

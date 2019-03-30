@@ -103,6 +103,36 @@ textarea { height: 80px; resize: none; }
   padding: 2%;
   
 }
+select{
+  background: none !important;
+  margin: .8em auto;
+  font-family: inherit; 
+  text-transform: inherit; 
+  font-size: inherit;
+  
+  display: block; 
+  width: 280px; 
+  padding: .4em;
+}
+.kale{
+  background-color: transparent!important;
+  border:black 1px solid;
+  color: black;
+  position: relative;
+  margin: auto;
+  width: 20%;
+  margin: .8em auto;
+  font-family: inherit; 
+  text-transform: inherit; 
+  font-size: inherit;
+  
+  display: block; 
+ 
+  padding: .4em;
+}
+a{
+  color: black;
+}
 
 #right {
   margin-top: 10px; 

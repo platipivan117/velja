@@ -24,6 +24,7 @@ app.post('/dodaj',routes.dodaj);
 app.get('/kalendar',routes.kalendar);
 app.delete('/izbrisi/:id',routes.del);
 app.get('/kalendar/:datum',routes.kalendarPromena);
+app.get('/kalendar/:datum/:br',routes.kalendarPromena);
 
 
 
