@@ -91,7 +91,30 @@ $( document ).ready((e)=>{
               
               u4fil.push(new Date(element.start));
           });
-                    
+          var strDan;
+          if(date.getDay()==0){
+            strDan="Nedelja";
+          }
+          else if (date.getDay()==1){
+            strDan="Ponedeljak";
+          }
+          else if (date.getDay()==2){
+            strDan="Utorak";
+          }
+          else if (date.getDay()==3){
+            strDan="Sreda";
+          }
+          else if (date.getDay()==4){
+            strDan="Cetvrtak";
+          }
+          else if (date.getDay()==5){
+            strDan="Petak";
+          }
+          else if (date.getDay()==6){
+            strDan="Subota";
+          }
+          stringDatuma= date.getDate()+"."+(date.getMonth()+1)+"."+date.getFullYear()+"."+"<br>"+strDan;
+          $(".datum").html("<h1>"+stringDatuma+"</h1>");
 
           
           data.u1.forEach(element => {
